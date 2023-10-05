@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block navbar %}
+    <!-- <h1>Navbar section</h1> -->
+    <div class="container flex mx-auto justify-between w-full m-5 border-b-4 border-indigo-500 p-5 rounded ">
+        <div>
+            {% if user.is_authenticated %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="text-center font-bold">Welcome {{ user.get_username }}</h1>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="text-center">Welcome Guest</h1>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        <div>
+           
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="border p-2 rounded-lg m-3 bg-blue-600 text-white hover:bg-blue-800">Logout</a>
+                <a href="{% url 'add_blog' %}" class="border p-2 rounded-lg m-3 bg-blue-600 text-white hover:bg-blue-800">Add Blog</a>
+            {% else %}
+            <!-- <a href="/signup" class="border p-2 rounded-lg m-3 hover:bg-gray-100 ">Sign up</a> -->
+            <a href="/login" class="border p-2 rounded-lg m-3 hover:bg-gray-100 ">Login</a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

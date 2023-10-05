@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<section>
+    <div class="container mx-auto">
+        <div class="row text-center ">
+            <div class="col-xl-10 mx-auto justify-center"><img class="img-fluid  w-96 mb-5"
+                    src="/media/{{blog_obj.image}}"
+                    alt=""></div>
+        </div>
+        <div>
+            <h1 class="font-bold">{{blog_obj.title}}</h1>
+        </div>
+        <div class="row">
+            <div class="col-xl-8 col-lg-10 mx-auto">
+                <div class="text-content">
+                    {{blog_obj.content|safe}}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock %}

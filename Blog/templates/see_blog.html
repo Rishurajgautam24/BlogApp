@@ -1,0 +1,43 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container mx-auto">
+<div class="flex flex-row flex-wrap items-center justify-center gap-6 w-full">
+   
+{% for blog in blog_objs %}
+<div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 h-96">
+    <a href="{%  url 'blog_detail' blog.slug %}">
+
+        <img class="rounded-t-lg h-[199px] w-[353px] " src="/media/{{blog.image}}" alt="" />
+    </a>
+    <div class="p-5">
+        <a href="{%  url 'blog_detail' blog.slug %}">
+            <h5 class="mb-2 text-xl prose-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{blog.title}}</h5>
+        </a>
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{blog.created_at}}</p>
+    </div>
+
+    <div class="flex items-center justify-between p-5 border-t border-gray-200 dark:border-gray-700">
+        <a href="{%  url 'blog_detail' blog.slug %}">
+            <button class="px-4 py-2 text-sm font-medium text-white transition-colors duration-200 transform bg-gray-900 rounded-md hover:bg-gray-700 focus:outline-none focus:bg-gray-700">Read More</button>
+        </a>
+        {% if user.is_authenticated %}
+        <!-- add a edit button -->
+        <a href="{%  url 'edit_blog' blog.slug %}">
+            <button class="px-4 py-2 text-sm font-medium text-white transition-colors duration-200 transform bg-gray-900 rounded-md hover:bg-gray-700 focus:outline-none focus:bg-gray-700">Edit</button>
+        </a>
+        <!-- add a delete button -->
+        <a href="{%  url 'delete_blog' blog.slug %}">
+            <button class="px-4 py-2 text-sm font-medium text-white transition-colors duration-200 transform bg-gray-900 rounded-md hover:bg-gray-700 focus:outline-none focus:bg-gray-700">Delete</button>
+        </a>
+        {% endif %}
+        
+
+    </div>
+</div>
+{% endfor %}
+
+</div>
+</div>
+
+
+{% endblock %}

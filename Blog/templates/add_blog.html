@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div class="container mt-5 mx-auto">
+
+    <a href="{% url 'see_blog' %}" class="border p-2 rounded-lg mt-3 bg-blue-600 text-white hover:bg-blue-800">View Your blogs</a>
+
+    <form method="post" class="mt-5 pt-5 mb-5 pb-5"
+          enctype="multipart/form-data" action="{% url 'add_blog' %}">
+        {% csrf_token %}
+        <div class="row">
+            <!-- <div>
+                <label for="title" class="block mb-2 text-gray-900 dark:text-gray-800">Enter blog title</label>
+                <input type="text" name="title" placeholder="Enter title" class="form-control bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-green-600 focus:border-green-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+            </div> -->
+
+            <div class="row mt-5">
+                <div class="row mt-5">
+                    {{form.media}}
+                    <div class="mb-3">
+                        {{form.title.label}}
+                        {{form.title}}   
+                    </div>
+                    <div class="mb-5">
+                        {{form.content.label}}
+                        {{form.content}}
+                    </div>
+                    <div class="mb-3 mt-3">
+                        {{form.image}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="submit" 
+        class="border p-2 rounded-lg mt-3 bg-blue-600 text-white hover:bg-blue-800">Create Blog</button>
+
+    </form>
+
+</div>
+
+
+{% endblock %}
