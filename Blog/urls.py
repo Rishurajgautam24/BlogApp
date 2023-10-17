@@ -8,7 +8,7 @@ from .views import *
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", index, name="see_blog"),
+    path("", see_blog, name="see_blog"),
     path("login/", login, name="login"),
     path("signup/", signup, name="signup"),
     path("logout/", logout, name="logout"),
