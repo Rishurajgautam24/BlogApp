@@ -6,8 +6,10 @@
 {% for blog in blog_objs %}
 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 h-96">
     <a href="{%  url 'blog_detail' blog.slug %}">
+       {% if blog.image != NULL %}
 
         <img class="rounded-t-lg h-[199px] w-[353px] " src="/media/{{blog.image}}" alt="image" />
+       {% endif %}
     </a>
     <div class="p-5">
         <a href="{%  url 'blog_detail' blog.slug %}">
