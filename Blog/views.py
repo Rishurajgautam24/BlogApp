@@ -162,13 +162,27 @@ def edit_blog(request, slug):
     template_name = 'edit_blog.html'
     
     if request.method == 'POST':
-        form = BlogForm(request.POST, request.FILES, instance=blog_obj)
-        if form.is_valid():
-            form.save()
-            success_url = reverse('see_blog', kwargs={'slug': slug})
-            return redirect(success_url)
+        title = request.POST.get('title')  # Get updated title from form submission
+        content = request.POST.get('content')  # Get updated content from form submission
+        image = request.FILES.get('image')  # Get updated image from form submission
+        
+        # Update the blog object fields
+        blog_obj.title = title
+        blog_obj.content = content
+        if image:
+            blog_obj.image = image
+        
+        blog_obj.save()
+        
+        success_url = reverse('see_blog', kwargs={'slug': slug})
+        return redirect(success_url)
     else:
-        form = BlogForm(instance=blog_obj)
+        # Pre-fill the form fields with the existing data
+        initial_data = {
+            'title': blog_obj.title,
+            'content': blog_obj.content
+        }
+        form = BlogForm(initial=initial_data, instance=blog_obj)
 
     context = {
         'form': form,
@@ -176,14 +190,6 @@ def edit_blog(request, slug):
     }
 
     return render(request, template_name, context)
-
-    
-    
-
-    
-
-    
-    
 
 
 def delete_blog(request, slug):
