@@ -155,6 +155,8 @@ def add_blog(request, slug=None):
 #         return redirect('/see_blog/')
 #     else:
 #         return redirect('login')
+
+
 def edit_blog(request, slug):
     blog_obj = get_object_or_404(Blog, slug=slug)
     template_name = 'edit_blog.html'
@@ -163,12 +165,17 @@ def edit_blog(request, slug):
         form = BlogForm(request.POST, request.FILES, instance=blog_obj)
         if form.is_valid():
             form.save()
-            success_url = reverse('see_blog')
+            success_url = reverse('see_blog', kwargs={'slug': slug})
             return redirect(success_url)
     else:
         form = BlogForm(instance=blog_obj)
 
-    return render(request, template_name, {'form': form})
+    context = {
+        'form': form,
+        'blog_obj': blog_obj
+    }
+
+    return render(request, template_name, context)
 
     
     
