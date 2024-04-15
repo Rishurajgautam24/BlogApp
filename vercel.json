@@ -19,11 +19,11 @@
         },
         {
             "src": "/static/(.*)",
-            "dest": "BlogApp/static/$1"
+            "dest": "Blog/static/$1"
         },
         {
             "src": "/media/(.*)",
-            "dest": "BlogApp/media/$1"
+            "dest": "Blog/media/$1"
         }
     ]
    
