@@ -3,7 +3,7 @@
 echo "BUILD STARTED"
 
 # Install dependencies (assuming no virtual environment)
-python3.9 -m pip install django -r requirements.txt
+python3.9 -m pip install -r requirements.txt
 
 # Collect static files
 python3.9 manage.py collectstatic --noinput --clear
