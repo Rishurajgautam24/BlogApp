@@ -2,15 +2,8 @@
 
 echo "BUILD STARTED"
 
-# Install dependencies within a virtual environment (recommended)
-# Modify the following lines to match your virtual environment creation command
-source venv/bin/activate  # Assuming your virtual environment is named 'venv'
-
-# Install dependencies
-python3.9 -m pip install -r requirements.txt
-
-# Deactivate virtual environment (optional, but recommended for clean separation)
-deactivate
+# Install dependencies (assuming no virtual environment)
+python3.9 -m pip install django -r requirements.txt
 
 # Collect static files
 python3.9 manage.py collectstatic --noinput --clear
